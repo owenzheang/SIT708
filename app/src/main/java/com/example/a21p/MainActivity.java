@@ -76,20 +76,6 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inputText = editTextValue.getText().toString().trim();
-                if(inputText.isEmpty()){
-                    Toast.makeText(MainActivity.this, "please enter a value",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                double inputValue;
-
-                try{
-                    inputValue = Double.parseDouble(inputText);
-                }catch(NumberFormatException e){
-                    Toast.makeText(MainActivity.this, "Invalid number", Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 Result();
             }
         });
@@ -213,6 +199,10 @@ public class MainActivity extends AppCompatActivity {
             return value + 273.15;
         }else if(from.equals("Kelvin") && to.equals("Celsius")){
             return value - 273.15;
+        }else if(from.equals("Fahrenheit") && to.equals("Kelvin")) {
+            return (value - 32) / 1.8 + 273.15;
+        }else if(from.equals("Kelvin") && to.equals("Fahrenheit")){
+            return (value - 273.15) * 1.8 + 32;
         }else{
             return value;
         }
